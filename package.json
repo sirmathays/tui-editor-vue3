@@ -1,0 +1,50 @@
+{
+  "name": "tui-editor-vue3",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "rimraf dist && vue-tsc && vite build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@toast-ui/editor-plugin-chart": "^3.0.1",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.1.0",
+    "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
+    "@toast-ui/editor-plugin-table-merged-cell": "^3.1.0",
+    "@toast-ui/editor-plugin-uml": "^3.0.1",
+    "@toast-ui/editor": "^3.2.2",
+    "@types/node": "^20.3.3",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.13",
+    "postcss-import": "^15.0.1",
+    "postcss-nesting": "^11.3.0",
+    "postcss": "^8.4.24",
+    "rimraf": "^5.0.1",
+    "tailwindcss": "^3.2.4",
+    "to-mark": "^1.1.9",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9",
+    "vitepress": "^0.22.4",
+    "vue-tsc": "^1.8.3"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "module": "./dist/tui-editor-vue3.es.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/tui-editor-vue3.es.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirmathays/tui-editor-vue3.git"
+  }
+}
