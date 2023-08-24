@@ -1,8 +1,8 @@
-# TUI Editor for Vue 3
+# Toast UI Editor for Vue 3
 
-This library serves as a wrapper for ToastUI Markdown Editor.
+This library serves as a Vue 3 wrapper for the incredible [Toast UI Markdown Editor](https://nhn.github.io/tui.editor).
 
-The library consists of two components, Editor and Viewer.
+The library consists of two Vue components, Editor and Viewer.
 
-- [Editor](/components/editor)
-- [Viewer](/components/viewer)
+- [Editor](/editor)
+- [Viewer](/viewer)

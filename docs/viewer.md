@@ -12,7 +12,7 @@ Description of the component.
   <Basic/>
 </DemoContainer>
 
-<<< @/components/demo/Viewer/Basic.vue
+<<< @/demo/Viewer/Basic.vue
 
 ## Reference
 

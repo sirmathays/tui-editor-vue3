@@ -1,5 +1,12 @@
 .demo-container {
   border: 1px solid lightgrey;
   border-radius: 5px;
-  padding: 10px 20px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.demo-container-toggle-wrapper {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
 }

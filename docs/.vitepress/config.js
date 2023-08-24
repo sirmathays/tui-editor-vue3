@@ -1,8 +1,8 @@
 const path = require('path')
 
 module.exports = {
-  title: 'My Lib',
-  description: 'Just playing around.',
+  title: 'Toast UI Editor for Vue 3',
+  description: 'Toast UI Markdown Editor wrapper written for Vue 3!',
   themeConfig: {
     repo: 'https://github.com/sirmathays/tui-editor-vue3',
     sidebar: [
@@ -15,8 +15,8 @@ module.exports = {
       }, {
         text: 'Components',
         children: [
-          { text: 'Editor', link: '/components/editor' },
-          { text: 'Viewer', link: '/components/viewer' },
+          { text: 'Editor', link: '/editor' },
+          { text: 'Viewer', link: '/viewer' },
         ],
       }
     ],

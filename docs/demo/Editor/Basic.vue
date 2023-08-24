@@ -9,7 +9,7 @@ const model = ref(lorem)
 </script>
 
 <template>
-    <div class="demo-container-editor-wrapper">
+    <div>
         <Editor
             :dark-mode="darkMode"
             :enhanced="enhanced"
@@ -25,16 +25,3 @@ const model = ref(lorem)
         </div>
     </div>
 </template>
-
-<style>
-.demo-container-editor-wrapper {
-    margin-left: -10px;
-    margin-right: -10px;
-}
-
-.demo-container-toggle-wrapper {
-    display: flex;
-    gap: 5px;
-    margin-top: 10px;
-}
-</style>

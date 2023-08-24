@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue'
 import useEditor from '../composables/useEditor'
 import { PluginName } from '../utils/TuiPlugins'
 import { ToolbarItemOptions } from '@toast-ui/editor/types/ui'
-import { EditorType, PreviewStyle } from '@toast-ui/editor'
+import Editor, { EditorType, PreviewStyle } from '@toast-ui/editor'
 
 interface Props {
     allowFullScreen?: boolean
@@ -39,9 +39,12 @@ const props = withDefaults(defineProps<Props>(), {
     ],
 })
 
-const emit = defineEmits(['update:modelValue', 'addImage', 'fullScreenChange'])
-const editor = ref(null) as Ref<HTMLDivElement | null>
+const editor = ref(null) as Ref<Editor | null>
+const editorEl = ref(null) as Ref<HTMLDivElement | null>
 const fullScreen = ref(false) as Ref<boolean>
+
+const emit = defineEmits(['update:modelValue', 'addImage', 'fullScreenChange'])
+defineExpose({ editor })
 
 watch(fullScreen, (value) => {
     const cls = document.body.classList
@@ -50,8 +53,8 @@ watch(fullScreen, (value) => {
     emit('fullScreenChange', value)
 })
 
-onMounted(() => {
-    useEditor(editor, {
+onMounted(() => nextTick(() => {
+    editor.value = useEditor(editorEl, {
         height: '100cqh',
         hideModeSwitch: props.hideModeSwitch,
         initialEditType: props.initialEditType,
@@ -65,7 +68,7 @@ onMounted(() => {
         addImageBlobHook: (blob, callback): void => emit('addImage', { blob, callback }),
         onChange: (e): void => emit('update:modelValue', e.getMarkdown()),
     })
-})
+}))
 </script>
 
 <template>
@@ -79,7 +82,7 @@ onMounted(() => {
             'toastui-editor-dark': darkMode
         }"
     >
-        <div ref="editor" :class="editorClasses" />
+        <div ref="editorEl" :class="editorClasses" />
         <div
             class="fullscreen-button-container"
             v-if="props.allowFullScreen"
