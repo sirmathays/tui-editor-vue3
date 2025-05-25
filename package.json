@@ -1,6 +1,6 @@
 {
   "name": "tui-editor-vue3",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "scripts": {
     "build": "rimraf dist && vue-tsc && vite build",
     "docs:dev": "vitepress dev docs",
