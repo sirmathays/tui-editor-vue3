@@ -1,25 +1,31 @@
-const path = require('path')
+import path from 'path'
+import { defineConfig } from 'vitepress'
 
-module.exports = {
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
   title: 'Toast UI Editor for Vue 3',
   description: 'Toast UI Markdown Editor wrapper written for Vue 3!',
   themeConfig: {
-    repo: 'https://github.com/sirmathays/tui-editor-vue3',
     sidebar: [
       {
         text: 'Introduction',
-        children: [
+        items: [
           { text: 'Introduction', link: '/' },
           { text: 'Getting Started', link: '/guide/' },
         ],
-      }, {
+      },
+      {
         text: 'Components',
-        children: [
+        items: [
           { text: 'Editor', link: '/editor' },
           { text: 'Viewer', link: '/viewer' },
         ],
       }
     ],
+
+    socialLinks: [
+        { icon: 'github', link: 'https://github.com/sirmathays/tui-editor-vue3' }
+    ]
   },
   vite: {
     resolve: {
@@ -28,4 +34,4 @@ module.exports = {
       }
     }
   }
-}
+})
