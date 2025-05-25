@@ -15,7 +15,6 @@ interface Props {
     hideModeSwitch?: boolean
     initialEditType?: EditorType
     language?: string
-    modelValue?: string
     plugins?: PluginName[]
     previewStyle?: PreviewStyle
     toolbarItems?: (string | ToolbarItemOptions)[][]
@@ -29,7 +28,6 @@ const props = withDefaults(defineProps<Props>(), {
     enhanced: true,
     height: '500px',
     initialEditType: 'markdown',
-    modelValue: '',
     plugins: (): PluginName[] => [],
     previewStyle: 'tab',
     toolbarItems: () => [
@@ -39,18 +37,17 @@ const props = withDefaults(defineProps<Props>(), {
     ],
 })
 
-const editor = ref(null) as Ref<Editor | null>
-const editorEl = ref(null) as Ref<HTMLDivElement | null>
-const fullScreen = ref(false) as Ref<boolean>
+const model = defineModel<string>({ default: '' })
+const fullScreen = defineModel<boolean>('fullScreen', { default: false })
 
-const emit = defineEmits(['update:modelValue', 'addImage', 'fullScreenChange'])
+const editor = ref<Editor | null>(null)
+const editorEl = ref<HTMLDivElement | null>(null)
+
+const emit = defineEmits(['addImage'])
 defineExpose({ editor })
 
 watch(fullScreen, (value) => {
-    const cls = document.body.classList
-    value ? cls.add('overflow-hidden') : cls.remove('overflow-hidden')
-
-    emit('fullScreenChange', value)
+    document.body.style.overflow = value ? 'hidden' : ''
 })
 
 onMounted(() => nextTick(() => {
@@ -58,7 +55,7 @@ onMounted(() => nextTick(() => {
         height: '100cqh',
         hideModeSwitch: props.hideModeSwitch,
         initialEditType: props.initialEditType,
-        initialValue: props.modelValue,
+        initialValue: model.value,
         language: props.language,
         plugins: props.plugins,
         previewStyle: props.previewStyle,
@@ -66,7 +63,9 @@ onMounted(() => nextTick(() => {
         usageStatistics: props.usageStatistics,
         useCommandShortcut: props.useCommandShortcut,
         addImageBlobHook: (blob, callback): void => emit('addImage', { blob, callback }),
-        onChange: (e): void => emit('update:modelValue', e.getMarkdown()),
+        onChange: (e): void => {
+            model.value = e.getMarkdown()
+        },
     })
 }))
 </script>
@@ -75,12 +74,12 @@ onMounted(() => nextTick(() => {
     <div
         class="tui-editor-vue3-wrapper"
         :style="{ height: !fullScreen ? height : undefined }"
-        @keydown.escape="fullScreen = false"
         :class="{
             'tui-editor-vue3-enhanced': enhanced,
             'toastui-full-screen': fullScreen,
             'toastui-editor-dark': darkMode
         }"
+        @keydown.escape="fullScreen = false"
     >
         <div ref="editorEl" :class="editorClasses" />
         <div

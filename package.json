@@ -8,7 +8,7 @@
     "docs:serve": "vitepress serve docs"
   },
   "peerDependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@toast-ui/editor-plugin-chart": "^3.0.1",
@@ -18,17 +18,17 @@
     "@toast-ui/editor-plugin-uml": "^3.0.1",
     "@toast-ui/editor": "^3.2.2",
     "@types/node": "^20.3.3",
-    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue": "^5.2.4",
     "autoprefixer": "^10.4.13",
     "postcss-import": "^15.0.1",
     "postcss-nesting": "^11.3.0",
     "postcss": "^8.4.24",
-    "rimraf": "^5.0.1",
+    "rimraf": "^6.0.1",
     "to-mark": "^1.1.9",
-    "typescript": "^5.1.6",
-    "vite": "^4.3.9",
-    "vitepress": "^0.22.4",
-    "vue-tsc": "^1.8.3"
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitepress": "^1.6.3",
+    "vue-tsc": "^2.2.10"
   },
   "files": [
     "src",

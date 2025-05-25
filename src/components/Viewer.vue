@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<{
     darkMode: false
 })
 
-const viewer = ref(null) as Ref<HTMLDivElement | null>
+const viewer = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
     useViewer(viewer, {

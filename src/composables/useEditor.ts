@@ -19,13 +19,11 @@ import '@toast-ui/editor/dist/i18n/zh-cn'
 import '@toast-ui/editor/dist/i18n/zh-tw'
 import '@toast-ui/editor/dist/i18n/zh-tw'
 
-import { Ref } from 'vue'
-import Editor, { EditorType, PreviewStyle } from '@toast-ui/editor'
-import { ToolbarItemOptions } from '@toast-ui/editor/types/ui'
-import { PluginName, mapPlugins } from '../utils/TuiPlugins'
-
-export type HookCallback = (url: string, text?: string) => void
-export type AddImageBlobHook = (blob: Blob | File, callback: HookCallback) => void
+import type { Ref } from 'vue'
+import Editor from '@toast-ui/editor'
+import type { HookMap, EditorType, PreviewStyle } from '@toast-ui/editor'
+import type { ToolbarItemOptions } from '@toast-ui/editor/types/ui'
+import { mapPlugins, type PluginName } from '../utils/TuiPlugins'
 
 interface Options {
     initialValue: string
@@ -41,7 +39,7 @@ interface Options {
     useCommandShortcut?: boolean
 
     onChange?: (e: Editor) => void
-    addImageBlobHook?: AddImageBlobHook
+    addImageBlobHook?: HookMap['addImageBlobHook']
 }
 
 export default (elRef: Ref<HTMLElement | null>, options: Options) => {
@@ -68,7 +66,7 @@ export default (elRef: Ref<HTMLElement | null>, options: Options) => {
         events: {
             change: options.onChange
                 ? () => options.onChange && options.onChange(e)
-                : () => { },
+                : () => { /* Nothing happens */ },
         },
         hooks: {
             addImageBlobHook: options.addImageBlobHook,
